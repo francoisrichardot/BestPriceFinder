@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "610441457913",
+    "firebase_url": "https://bestpricefinder-9f054.firebaseio.com",
+    "project_id": "bestpricefinder-9f054",
+    "storage_bucket": "bestpricefinder-9f054.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610441457913:android:3ed4c5014e4df07a",
+        "android_client_info": {
+          "package_name": "com.example.frank.bestpricefinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610441457913-f1s2m6luqjska1bimr0hoft5jmkejpt5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsh94VC1ljmzCvFgkITXHlyMz5W4CL2PU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610441457913-f1s2m6luqjska1bimr0hoft5jmkejpt5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
