@@ -1,15 +1,22 @@
 package com.example.frank.bestpricefinder;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    Context m_context = this;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_scan:
                     fragment = new ScanFragment();
+                    Bundle bundl;
+                    bundl = new Bundle();
+                    ScanResultsSerialized bundleObj;
+                    bundleObj = new ScanResultsSerialized(m_context,"");
+
+                    bundl.putSerializable("theMainContext", bundleObj);
+                    fragment.setArguments(bundl);
                     break;
                 case R.id.navigation_specials:
                     fragment = new SpecialsFragment();
@@ -47,9 +61,14 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    /*public static void openFragmentFromClass(Fragment fragment) {
+
+        loadFragment(fragment);
+    }*/
+
     /*_____________________________________loadFragment_________________________________________*/
    /* Method to load fragments in the MainActivity fragments container.*/
-    private boolean loadFragment(Fragment fragment) {
+    public boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -60,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
     /*__________________________________End of loadFragment___________________________________*/
 
     @Override

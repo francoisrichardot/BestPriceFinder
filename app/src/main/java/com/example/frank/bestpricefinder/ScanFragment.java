@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.CompoundButton;
 
+
 import com.example.frank.bestpricefinder.barcodescanning.BarcodeScanningProcessor;
 import com.example.frank.bestpricefinder.camerautility.CameraSource;
 import com.example.frank.bestpricefinder.camerautility.CameraSourcePreview;
@@ -26,6 +27,7 @@ import com.example.frank.bestpricefinder.camerautility.GraphicOverlay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ScanFragment extends Fragment implements
         CompoundButton.OnCheckedChangeListener {
@@ -36,6 +38,8 @@ public class ScanFragment extends Fragment implements
     private CameraSourcePreview preview;
     private GraphicOverlay graphicOverlay;
     private static final String TAG = "Barcode Scanning";
+
+
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,7 +91,24 @@ public class ScanFragment extends Fragment implements
         if (cameraSource == null) {
             cameraSource = new CameraSource(getActivity(), graphicOverlay);
         }
-        cameraSource.setMachineLearningFrameProcessor(new BarcodeScanningProcessor());
+
+
+
+        Bundle bundle = getArguments();
+        ScanResultsSerialized BundleObj= (ScanResultsSerialized) bundle.getSerializable("theMainContext");
+
+        if(bundle.isEmpty()){
+
+            Log.e("BUNDLE: ", "NULL " );
+        } else {
+
+            Log.e("BUNDLE: ", "NOT NULL " );
+            Log.e("SCANFRAG context ", "" + BundleObj.getM_context().toString() );
+            ((ScanResultsSerialized) bundle.getSerializable("theMainContext")).getM_context();
+        }
+
+        BarcodeScanningProcessor barcodeProcessor = new BarcodeScanningProcessor(BundleObj.getM_context());
+        cameraSource.setMachineLearningFrameProcessor(new BarcodeScanningProcessor(BundleObj.getM_context()));
 
     }
 
